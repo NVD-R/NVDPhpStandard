@@ -86,7 +86,7 @@ class NVD_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
         }
         $fullPath = basename($phpcsFile->getFilename());
         $fileName = substr($fullPath, 0, strrpos($fullPath, '.'));
-        if ($this->_phpVersion >= 50300 and !($fileName === '' or is_numeric(substr($fileName, 0, 4)) or $fileName == 'DatabaseSeeder'))
+        if ($this->_phpVersion >= 50300 and !($fileName === '' or basename(dirname($phpcsFile->getFilename(), 2)) == 'database'))
         {
             $namespace = $phpcsFile->findNext(array(T_NAMESPACE, T_CLASS, T_INTERFACE, T_TRAIT), 0);
             if ($tokens[$namespace]['code'] !== T_NAMESPACE) {
